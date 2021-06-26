@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public static class Program
+    static class Program
     {
-        static void Main()
+        public static void Main()
         {
             GameManager game = new GameManager();
             game.Start();

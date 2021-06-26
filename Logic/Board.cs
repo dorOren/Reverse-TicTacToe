@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Logic.Enums;
 
 namespace Logic
 {
@@ -73,8 +74,8 @@ namespace Logic
         {
             i_ChosenColumn += 1;
             i_ChosenRow += 1;
-            bool legalRowNumber = (i_ChosenRow <= MatrixSideSize && i_ChosenRow >= 1) ? true : false;
-            bool legalColumnNumber = (i_ChosenColumn <= MatrixSideSize && i_ChosenColumn >= 1) ? true : false;
+            bool legalRowNumber = (i_ChosenRow <= MatrixSideSize && i_ChosenRow >= 1);
+            bool legalColumnNumber = (i_ChosenColumn <= MatrixSideSize && i_ChosenColumn >= 1);
             return legalColumnNumber && legalRowNumber;
         }
 

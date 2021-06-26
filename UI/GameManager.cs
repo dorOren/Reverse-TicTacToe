@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using Logic;
+using Logic.Enums;
 
 namespace UI
 {
@@ -23,7 +25,6 @@ namespace UI
         public void Start()
         {
             getGameSettingsFromUser();
-
         }
 
         private void getGameSettingsFromUser()
@@ -33,12 +34,21 @@ namespace UI
             string player1Name;
             int numRows;
             int numCols;
+            ePlayerType playerType;
             if (gameSettingsForm.DialogResult == DialogResult.OK)
             {
                 player1Name = gameSettingsForm.Player1Name;
                 numRows = gameSettingsForm.NumRows;
                 numCols = gameSettingsForm.NumCols;
-                BoardForm board = new BoardForm(numCols, numRows);
+               if(gameSettingsForm.Player2CheckBox)
+                {
+                    playerType = ePlayerType.Human;
+                }
+                else
+                {
+                    playerType = ePlayerType.Computer;
+                }
+                BoardForm board = new BoardForm(numCols, numRows, playerType);
                 board.ShowDialog();
             }
 

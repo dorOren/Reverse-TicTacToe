@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rhhmWjgY2MfamiXix2fa6XCmIViMbqwyWxdq6lx907YruuCs4fGqt3P16hYhVOmBW/z3nDQ+cB3WcEEXMWaMSQ==",
+  "dgSpecHash": "9LPWk0sDOqmZIPoADZXg3bnHQXNNZ4ti6Cp+ohqL1znbSGVk9M54cuyZ9w30/B7Ss7V15bKYCFu2c8l6kSgXEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\source\\repos\\B21 Ex05 Ben 311454284 Dor 208392233\\UI\\UI.csproj",
+  "projectFilePath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
