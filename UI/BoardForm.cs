@@ -23,7 +23,6 @@ namespace UI
         public Player Player2 { get; }
 
         private Button[,] m_ButtonMatrix;
-        public LastButtonClicked ButtonClicked { get; set; }
 
         public BoardForm(int i_NumCols, int i_NumRows, ePlayerType i_PlayerType)
         {
@@ -58,7 +57,7 @@ namespace UI
                     sign = Player2.Sign;
                 }
                 thisButton.Text = sign.ToString();
-                Game.Turns++;
+                Game.IncreaseTurns();
 
                 int rowNum = (int)thisButton.Tag % GameBoard.MatrixSideSize;
                 int colNum = (int)thisButton.Tag / GameBoard.MatrixSideSize;
@@ -86,8 +85,7 @@ namespace UI
         {
             PlayerTurnInfo generatedMove = new PlayerTurnInfo();
             generatedMove = Game.GenerateComputerMove(Player2.Sign, i_PrevTurnInfo);
-            //Game.IncreaseTurns();
-            m_ButtonMatrix[generatedMove.CellRow, generatedMove.CellColumn].PerformClick();
+            m_ButtonMatrix[generatedMove.CellColumn, generatedMove.CellRow].PerformClick();
         }
 
         private void winningForm(eBoardSigns i_Sign)

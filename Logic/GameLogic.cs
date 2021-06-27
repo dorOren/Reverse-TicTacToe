@@ -95,7 +95,7 @@ namespace Logic
         {
             int matrixSideSize = m_GameBoard.MatrixSideSize;
             PlayerTurnInfo aiMove = new PlayerTurnInfo(matrixSideSize - 1, matrixSideSize - 1);
-            if (matrixSideSize % 2 != 0 && i_PrevTurnInfo.CellColumn == (matrixSideSize / 2) + 1)
+            if (matrixSideSize % 2 != 0 && i_PrevTurnInfo.CellColumn == (matrixSideSize / 2))
             {
                 aiMove.CellColumn = i_PrevTurnInfo.CellColumn;
                 aiMove.CellRow -= i_PrevTurnInfo.CellRow;
@@ -122,38 +122,12 @@ namespace Logic
             return aiMove;
         }
 
-        private PlayerTurnInfo smartChooseOfCell(eBoardSigns i_ComputerSign)
-        {
-            bool valid = false;
-            PlayerTurnInfo result = new PlayerTurnInfo();
-
-            while (!valid)
-            {
-                result = chooseRandomCell();
-                if (m_GameBoard.MarkCell(i_ComputerSign, result.CellColumn, result.CellRow))
-                {
-                    if (CheckForLoser(result.CellColumn, result.CellRow, i_ComputerSign))
-                    {
-                        m_GameBoard.ClearCell(result.CellColumn, result.CellRow);
-                        result = chooseRandomCell();
-                    }
-                    else
-                    {
-                        valid = true;
-                    }
-                }
-            }
-
-            return result;
-        }
-
         private PlayerTurnInfo chooseRandomCell()
         {
             PlayerTurnInfo result = new PlayerTurnInfo();
             Random rand = new Random();
             result.CellColumn = rand.Next(0, m_GameBoard.MatrixSideSize);
             result.CellRow = rand.Next(0, m_GameBoard.MatrixSideSize);
-            result.PlayerWantsToQuit = false;
             return result;
         }
 
