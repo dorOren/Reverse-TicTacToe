@@ -30,10 +30,9 @@ namespace UI
             Game = new GameLogic(GameBoard);
             Player1 = new Player(eBoardSigns.X, ePlayerType.Human);
             Player2 = new Player(eBoardSigns.O, i_PlayerType);
-            int length = (i_NumCols * 40) + 20;
-            int heigh = (i_NumRows * 40) + 20;
-            InitializeComponent(i_NumCols, i_NumRows, length, heigh);
-            generateButtonMatrix(i_NumCols, i_NumRows);
+            int width = (i_NumCols * 42) + 35+80;
+            int heigh = (i_NumRows * 42) + 80;
+            InitializeComponent(i_NumCols, i_NumRows, width, heigh, i_PlayerType);
         }
 
 
@@ -48,6 +47,7 @@ namespace UI
             eBoardSigns sign = eBoardSigns.Blank;
             if (thisButton.Enabled)
             {
+                thisButton.Enabled = false;
                 if (Game.Turns % 2 == 0)
                 {
                     sign = Player1.Sign;
@@ -67,18 +67,30 @@ namespace UI
                     winningForm(sign);
                 }
 
-                if (Game.CheckIfBoardFilled())
+                else if (Game.CheckIfBoardFilled())
                 {
                     tieForm();
                 }
 
-                if (Player2.PlayerType.Equals(ePlayerType.Computer) && Game.Turns % 2 != 0)
+                else if (Player2.PlayerType.Equals(ePlayerType.Computer) && Game.Turns % 2 != 0)
                 {
                     PlayerTurnInfo turnInfo = new PlayerTurnInfo(colNum,rowNum);
                     computerMove(turnInfo);
                 }
             }
-            thisButton.Enabled = false;
+        }
+
+        private void  updateScore()
+        {
+            string opponent = "Player 2";
+            int player1Score = Player1.Score;
+            int player2Score = Player2.Score;
+            if (Player2.PlayerType.Equals(ePlayerType.Computer))
+            {
+                opponent = "Computer";
+            }
+            this.player1Label.Text = $"Player 1 : {player1Score}";
+            this.player2Label.Text = $"{opponent} : {player2Score}";
         }
 
         private void computerMove(PlayerTurnInfo i_PrevTurnInfo)
@@ -116,7 +128,9 @@ namespace UI
             }
             if (result == DialogResult.Yes)
             {
+                updateScore();
                 ClearBoard();
+                Game.Turns = 0;
             }
             else
             {
@@ -143,6 +157,7 @@ namespace UI
             if (result == DialogResult.Yes)
             {
                 ClearBoard();
+                Game.Turns = 0;
             }
             else
             {

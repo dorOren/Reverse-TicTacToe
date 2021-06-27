@@ -209,6 +209,10 @@ namespace UI
             this.Controls.Add(this.textBoxPlayer1Name);
             this.Controls.Add(this.player1Label);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(298, 296);
+            this.MaximumSize = new System.Drawing.Size(298, 296);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Name = "GameSettingsForm";
             this.Text = "Game Settings";
             this.Load += new System.EventHandler(this.GameSettingsForm_Load);
