@@ -67,8 +67,10 @@ namespace UI
             {
                 MessageBox.Show("Illegal name input. Try again.");
             }
-
-            this.DialogResult = DialogResult.OK;
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
 
         private void numRows_ValueChanged(object sender, EventArgs e)

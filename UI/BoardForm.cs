@@ -30,8 +30,8 @@ namespace UI
             Game = new GameLogic(GameBoard);
             Player1 = new Player(eBoardSigns.X, ePlayerType.Human);
             Player2 = new Player(eBoardSigns.O, i_PlayerType);
-            int length = i_NumCols * 40+20;
-            int heigh = i_NumRows * 40+20;
+            int length = (i_NumCols * 40) + 20;
+            int heigh = (i_NumRows * 40) + 20;
             InitializeComponent(i_NumCols, i_NumRows, length, heigh);
             generateButtonMatrix(i_NumCols, i_NumRows);
         }

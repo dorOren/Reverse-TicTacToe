@@ -48,6 +48,7 @@ namespace UI
                     m_ButtonMatrix[i, j].TabIndex = 0;
                     m_ButtonMatrix[i, j].UseVisualStyleBackColor = true;
                     m_ButtonMatrix[i, j].Tag = buttonNum;
+                    m_ButtonMatrix[i, j].TabStop = false;
                     m_ButtonMatrix[i, j].Click += new System.EventHandler(this.buttons_Click);
                     this.Controls.Add(m_ButtonMatrix[i, j]);
                     buttonNum++;
