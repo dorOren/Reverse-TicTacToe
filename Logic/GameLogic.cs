@@ -13,7 +13,7 @@ namespace Logic
         private readonly Board m_GameBoard;
         public int Turns { get; set; }
 
-        private Random m_RandomGenerator = new Random();
+        private readonly Random m_RandomGenerator = new Random();
 
         public GameLogic(Board i_Board)
         {
@@ -45,6 +45,7 @@ namespace Logic
 
             if (!foundSequence) // Check secondary diagonal.
             {
+                foundSequence = true;
                 int cellIndex = m_GameBoard.MatrixSideSize - 1;
                 for (int i = 0; i < m_GameBoard.MatrixSideSize; i++)
                 {
@@ -120,15 +121,6 @@ namespace Logic
             }
 
             return aiMove;
-        }
-
-        private PlayerTurnInfo chooseRandomCell()
-        {
-            PlayerTurnInfo result = new PlayerTurnInfo();
-            Random rand = new Random();
-            result.CellColumn = rand.Next(0, m_GameBoard.MatrixSideSize);
-            result.CellRow = rand.Next(0, m_GameBoard.MatrixSideSize);
-            return result;
         }
 
         public bool CheckIfBoardFilled()

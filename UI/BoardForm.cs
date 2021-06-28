@@ -35,16 +35,10 @@ namespace UI
             InitializeComponent(i_NumCols, i_NumRows, width, heigh, i_PlayerType);
         }
 
-
-        private void Board_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttons_Click(object sender, EventArgs e)
         {
             Button thisButton = (Button)sender;
-            eBoardSigns sign = eBoardSigns.Blank;
+            eBoardSigns sign;
             if (thisButton.Enabled)
             {
                 thisButton.Enabled = false;
@@ -80,7 +74,7 @@ namespace UI
             }
         }
 
-        private void  updateScore()
+        private void updateScore()
         {
             string opponent = "Player 2";
             int player1Score = Player1.Score;
@@ -95,14 +89,14 @@ namespace UI
 
         private void computerMove(PlayerTurnInfo i_PrevTurnInfo)
         {
-            PlayerTurnInfo generatedMove = new PlayerTurnInfo();
+            PlayerTurnInfo generatedMove;
             generatedMove = Game.GenerateComputerMove(Player2.Sign, i_PrevTurnInfo);
             m_ButtonMatrix[generatedMove.CellColumn, generatedMove.CellRow].PerformClick();
         }
 
         private void winningForm(eBoardSigns i_Sign)
         {
-            DialogResult result = DialogResult.None;
+            DialogResult result;
             if (i_Sign.Equals(eBoardSigns.O))
             {
                 string msg = $"Player 1 Won!{Environment.NewLine}Would you like to play another round?";
@@ -163,37 +157,6 @@ namespace UI
             {
                 Application.Exit();
             }
-        }
-
-        private void BoardForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BoardForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        public struct LastButtonClicked
-        {
-            public LastButtonClicked(int i_I, int i_J)
-            {
-                RowNum = i_I;
-                ColNum = i_J;
-            }
-            public int RowNum { get; }
-            public int ColNum { get; }
         }
     }
 }

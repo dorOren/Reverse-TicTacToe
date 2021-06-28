@@ -3,15 +3,8 @@ namespace UI
 {
     partial class GameSettingsForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,10 +16,6 @@ namespace UI
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
@@ -138,47 +127,23 @@ namespace UI
             // numRows
             // 
             this.numRows.Location = new System.Drawing.Point(89, 169);
-            this.numRows.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            0});
-            this.numRows.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.numRows.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            this.numRows.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             this.numRows.Name = "numRows";
             this.numRows.Size = new System.Drawing.Size(37, 23);
             this.numRows.TabIndex = 9;
-            this.numRows.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.numRows.Value = new decimal(new int[] { 3, 0, 0, 0 });
             this.numRows.ValueChanged += new System.EventHandler(this.numRows_ValueChanged);
             // 
             // numCols
             // 
             this.numCols.Location = new System.Drawing.Point(205, 169);
-            this.numCols.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            0});
-            this.numCols.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.numCols.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            this.numCols.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             this.numCols.Name = "numCols";
             this.numCols.Size = new System.Drawing.Size(37, 23);
             this.numCols.TabIndex = 9;
-            this.numCols.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.numCols.Value = new decimal(new int[] { 3, 0, 0, 0 });
             this.numCols.ValueChanged += new System.EventHandler(this.numCols_ValueChanged);
             // 
             // startButton
@@ -220,11 +185,9 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.numCols)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
-
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label player1Label;
         private System.Windows.Forms.TextBox textBoxPlayer1Name;

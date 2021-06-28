@@ -1,9 +1,8 @@
 C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.exe
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.deps.json
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.runtimeconfig.json
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.runtimeconfig.dev.json
 C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.dll
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.pdb
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.dll
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.pdb
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.dll.config
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.csprojAssemblyReference.cache
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.BoardForm.resources
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.GameSettingsForm.resources
@@ -13,8 +12,9 @@ C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.AssemblyIn
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.csproj.CoreCompileInputs.cache
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.dll
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.pdb
-C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.genruntimeconfig.cache
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.dll
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.pdb
-C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\Logic.dll.config
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.deps.json
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.runtimeconfig.json
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.runtimeconfig.dev.json
+C:\Users\USER\source\repos\TicTacToeGUI\UI\bin\Debug\netcoreapp3.1\UI.pdb
 C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.csproj.CopyComplete
+C:\Users\USER\source\repos\TicTacToeGUI\UI\obj\Debug\netcoreapp3.1\UI.genruntimeconfig.cache
