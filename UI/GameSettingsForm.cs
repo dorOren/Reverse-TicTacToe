@@ -10,6 +10,14 @@ namespace UI
 {
     public partial class GameSettingsForm : Form
     {
+        public Boolean Player2CheckBox
+        {
+            get
+            {
+                return player2CheckBox.Checked;
+            }
+        }
+
         public string Player1Name
         {
             get
@@ -19,6 +27,7 @@ namespace UI
         }
         public int NumRows
         {
+            set { }
             get
             {
                 return (int)numRows.Value;
@@ -26,6 +35,7 @@ namespace UI
         }
         public int NumCols
         {
+            set { }
             get
             {
                 return (int)numCols.Value;
@@ -57,22 +67,31 @@ namespace UI
             {
                 MessageBox.Show("Illegal name input. Try again.");
             }
-
-            if (this.numRows.Value != this.numCols.Value)
+            else
             {
-                this.numCols.Value = this.numRows.Value;
+                this.DialogResult = DialogResult.OK;
             }
-
-            this.DialogResult = DialogResult.OK;
         }
 
         private void numRows_ValueChanged(object sender, EventArgs e)
         {
+            if (this.numRows.Value != this.numCols.Value)
+            {
+                this.numCols.Value = this.numRows.Value;
+            }
+        }
+
+        private void numCols_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.numRows.Value != this.numCols.Value)
+            {
+                this.numRows.Value = this.numCols.Value;
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (this.player2CheckBox.Checked)
             {
                 this.textBoxPlayer2Name.Enabled = true;
                 this.textBoxPlayer2Name.Clear();
@@ -85,6 +104,11 @@ namespace UI
         }
 
         private void GameSettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

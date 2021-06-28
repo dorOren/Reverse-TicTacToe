@@ -10,6 +10,11 @@ namespace Logic
     {
         public int CellRow { get; set; }
         public int CellColumn { get; set; }
-        public bool PlayerWantsToQuit { get; set; }
+
+        public PlayerTurnInfo(int i_CellCol, int i_CellRow)
+        {
+            CellRow = i_CellRow;
+            CellColumn = i_CellCol;
+        }
     }
 }
