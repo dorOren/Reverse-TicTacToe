@@ -21,15 +21,17 @@ namespace UI
         public GameLogic Game { get; }
         public Player Player1 { get; }
         public Player Player2 { get; }
+        public eLevelDifficulty LevelDifficulty { get; set; }
 
         private Button[,] m_ButtonMatrix;
 
-        public BoardForm(int i_NumCols, int i_NumRows, ePlayerType i_PlayerType)
+        public BoardForm(int i_NumCols, int i_NumRows, ePlayerType i_PlayerType, string i_Player1Name, string i_Player2Name, eLevelDifficulty i_LevelDifficulty)
         {
             GameBoard = new Board(i_NumCols, i_NumRows);
             Game = new GameLogic(GameBoard);
-            Player1 = new Player(eBoardSigns.X, ePlayerType.Human);
-            Player2 = new Player(eBoardSigns.O, i_PlayerType);
+            Player1 = new Player(eBoardSigns.X, ePlayerType.Human, i_Player1Name);
+            Player2 = new Player(eBoardSigns.O, i_PlayerType, i_Player2Name);
+            LevelDifficulty = i_LevelDifficulty;
             int width = (i_NumCols * 42) + 35+80;
             int heigh = (i_NumRows * 42) + 80;
             InitializeComponent(i_NumCols, i_NumRows, width, heigh, i_PlayerType);
@@ -50,13 +52,16 @@ namespace UI
                 {
                     sign = Player2.Sign;
                 }
+                thisButton.BackColor = Color.LightCoral;
                 thisButton.Text = sign.ToString();
                 Game.IncreaseTurns();
 
                 int rowNum = (int)thisButton.Tag % GameBoard.MatrixSideSize;
                 int colNum = (int)thisButton.Tag / GameBoard.MatrixSideSize;
                 GameBoard.MarkCell(sign, colNum, rowNum);
-                if (Game.CheckForLoser(colNum, rowNum, sign))
+
+                eBoardSigns loser = Game.CheckForLoser(colNum, rowNum);
+                if (!loser.Equals(eBoardSigns.Blank))
                 {
                     winningForm(sign);
                 }
@@ -76,21 +81,18 @@ namespace UI
 
         private void updateScore()
         {
-            string opponent = "Player 2";
-            int player1Score = Player1.Score;
-            int player2Score = Player2.Score;
-            if (Player2.PlayerType.Equals(ePlayerType.Computer))
-            {
-                opponent = "Computer";
-            }
-            this.player1Label.Text = $"Player 1 : {player1Score}";
-            this.player2Label.Text = $"{opponent} : {player2Score}";
+            // Updates the score on the screen
+            this.player1Label.Text = $"{Player1.PlayerName} : {Player1.Score}";
+            this.player2Label.Text = $"{Player2.PlayerName} : {Player2.Score}";
         }
 
         private void computerMove(PlayerTurnInfo i_PrevTurnInfo)
         {
             PlayerTurnInfo generatedMove;
-            generatedMove = Game.GenerateComputerMove(Player2.Sign, i_PrevTurnInfo);
+            if (LevelDifficulty.Equals(eLevelDifficulty.MediumLevel))
+                generatedMove = Game.AI_GenerateSymmetricalMove(i_PrevTurnInfo);
+            else //LevelDifficulty.Equals(eLevelDifficulty.HardLevel)
+                generatedMove = Game.AI_GenerateMinMaxAIMove();
             m_ButtonMatrix[generatedMove.CellColumn, generatedMove.CellRow].PerformClick();
         }
 
@@ -99,24 +101,15 @@ namespace UI
             DialogResult result;
             if (i_Sign.Equals(eBoardSigns.O))
             {
-                string msg = $"Player 1 Won!{Environment.NewLine}Would you like to play another round?";
-                string caption = "Player 1 Won!";
+                string msg = $"{Player1.PlayerName} Won!{Environment.NewLine}Would you like to play another round?";
+                string caption = $"{Player1.PlayerName} Won!";
                 result = MessageBox.Show(msg, caption, MessageBoxButtons.YesNo);
                 Player1.IncreaseScoreByOne();
             }
             else
             {
-                string opponent;
-                if (Player2.PlayerType.Equals(ePlayerType.Computer))
-                {
-                    opponent = "Computer";
-                }
-                else
-                {
-                    opponent = "Player 2";
-                }
-                string msg = $"{opponent} Won!{Environment.NewLine}Would you like to play another round?";
-                string caption = $"{opponent} Won!";
+                string msg = $"{Player2.PlayerName} Won!{Environment.NewLine}Would you like to play another round?";
+                string caption = $"{Player2.PlayerName} Won!";
                 result = MessageBox.Show(msg, caption, MessageBoxButtons.YesNo);
                 Player2.IncreaseScoreByOne();
             }
@@ -139,6 +132,7 @@ namespace UI
             {
                 button.Enabled = true;
                 button.Text = "";
+                button.BackColor = Control.DefaultBackColor;
             }
         }
 

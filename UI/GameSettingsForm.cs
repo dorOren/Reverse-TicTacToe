@@ -10,6 +10,17 @@ namespace UI
 {
     public partial class GameSettingsForm : Form
     {
+        public int RadioButton
+        {
+            get
+            {
+                if (radioButton1.Checked)
+                    return 1;
+                else
+                    return 2;
+            }
+        }
+
         public Boolean Player2CheckBox
         {
             get
@@ -25,6 +36,15 @@ namespace UI
                 return textBoxPlayer1Name.Text;
             }
         }
+
+        public string Player2Name
+        {
+            get
+            {
+                return textBoxPlayer2Name.Text;
+            }
+        }
+
         public int NumRows
         {
             set { }
@@ -87,6 +107,11 @@ namespace UI
             {
                 this.numRows.Value = this.numCols.Value;
             }
+
+            if (this.numCols.Value != 3)
+                this.radioButton2.Visible = false;
+            else // this.numCols.Value == 3
+                this.radioButton2.Visible = true;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -95,11 +120,16 @@ namespace UI
             {
                 this.textBoxPlayer2Name.Enabled = true;
                 this.textBoxPlayer2Name.Clear();
+                this.radioButton1.Visible = false;
+                this.radioButton2.Visible = false;
             }
             else
             {
                 this.textBoxPlayer2Name.Enabled = false;
                 this.textBoxPlayer2Name.Text = "Computer";
+                this.radioButton1.Visible = true;
+                if (this.numCols.Value == 3)
+                    this.radioButton2.Visible = true;
             }
         }
 

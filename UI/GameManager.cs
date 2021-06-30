@@ -9,19 +9,6 @@ namespace UI
 {
     public class GameManager
     {
-        private string m_Player1Name;
-        public string Player1Name
-        {
-            get
-            {
-                return m_Player1Name;
-            }
-            set
-            {
-                m_Player1Name = value;
-            }
-        }
-
         public void Start()
         {
             getGameSettingsFromUser();
@@ -32,28 +19,32 @@ namespace UI
             GameSettingsForm gameSettingsForm = new GameSettingsForm();
             gameSettingsForm.ShowDialog();
             string player1Name;
+            string player2Name;
             int numRows;
             int numCols;
+            eLevelDifficulty radioButton= eLevelDifficulty.None;
             ePlayerType playerType;
             if (gameSettingsForm.DialogResult == DialogResult.OK)
             {
                 player1Name = gameSettingsForm.Player1Name;
                 numRows = gameSettingsForm.NumRows;
                 numCols = gameSettingsForm.NumCols;
-               if(gameSettingsForm.Player2CheckBox)
+                player2Name = gameSettingsForm.Player2Name;
+                if (gameSettingsForm.Player2CheckBox)
                 {
                     playerType = ePlayerType.Human;
                 }
                 else
                 {
                     playerType = ePlayerType.Computer;
+                    if (gameSettingsForm.RadioButton == 1)
+                        radioButton = eLevelDifficulty.MediumLevel;
+                    else
+                        radioButton = eLevelDifficulty.HardLevel;
                 }
-                BoardForm board = new BoardForm(numCols, numRows, playerType);
+                BoardForm board = new BoardForm(numCols, numRows, playerType, player1Name, player2Name, radioButton);
                 board.ShowDialog();
             }
-
-
-
         }
     }
 }

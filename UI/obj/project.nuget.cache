@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9LPWk0sDOqmZIPoADZXg3bnHQXNNZ4ti6Cp+ohqL1znbSGVk9M54cuyZ9w30/B7Ss7V15bKYCFu2c8l6kSgXEQ==",
+  "dgSpecHash": "5yzy8Lrz02MufWOHlykvTmMXvKcSIFpidOHNmgcy5kAtMP/8NeugGYAWLAClBsuaVW/e4q4LM03O14cK9pzS+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj",
+  "projectFilePath": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\UI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

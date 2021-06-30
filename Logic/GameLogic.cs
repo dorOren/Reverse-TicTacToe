@@ -25,50 +25,58 @@ namespace Logic
             Turns++;
         }
 
-        public bool CheckForLoser(int i_ColumnChosen, int i_RowChosen, eBoardSigns i_MarkedSign)
+        public eBoardSigns CheckForLoser(int i_ColumnChosen, int i_RowChosen)
         {
-            return (checkForSequenceInColumn(i_ColumnChosen, i_MarkedSign)
-                    || checkForSequenceInRow(i_RowChosen, i_MarkedSign) || checkForSequenceInDiagonals(i_MarkedSign));
+            // Checks and returns a sign that filles a row, column or a diagonal.
+            // If no losing condition met, returns the sign "Blank".
+            eBoardSigns result = checkForSequenceInColumn(i_ColumnChosen);
+            if (result.Equals(eBoardSigns.Blank))
+                result = checkForSequenceInRow(i_RowChosen);
+            if (result.Equals(eBoardSigns.Blank))
+                result = checkForSequenceInDiagonals();
+            return result;
         }
 
-        private bool checkForSequenceInDiagonals(eBoardSigns i_MarkedSign)
+        private eBoardSigns checkForSequenceInDiagonals()
         {
-            bool foundSequence = true;
-            for (int i = 0; i < m_GameBoard.MatrixSideSize; i++) // Check main diagonal. 
+            eBoardSigns result = m_GameBoard.GetBoard()[0, 0];
+
+            for (int i = 1; i < m_GameBoard.MatrixSideSize; i++)
             {
-                if (m_GameBoard.GetBoard()[i, i] != i_MarkedSign)
+                // Look in top-left to bottom-right diagonal.
+                if (!m_GameBoard.GetBoard()[i, i].Equals(result))
                 {
-                    foundSequence = false;
+                    result = eBoardSigns.Blank;
                     break;
                 }
             }
 
-            if (!foundSequence) // Check secondary diagonal.
+            if (result.Equals(eBoardSigns.Blank))
             {
-                foundSequence = true;
                 int cellIndex = m_GameBoard.MatrixSideSize - 1;
-                for (int i = 0; i < m_GameBoard.MatrixSideSize; i++)
+                result = m_GameBoard.GetBoard()[0, cellIndex];
+                for (int i = 1; i < m_GameBoard.MatrixSideSize; i++)
                 {
-
-                    if (m_GameBoard.GetBoard()[i, cellIndex--] != i_MarkedSign)
+                    // Look in top-right to bottom-left diagonal.
+                    if (!m_GameBoard.GetBoard()[i, --cellIndex].Equals(result))
                     {
-                        foundSequence = false;
+                        result = eBoardSigns.Blank;
                         break;
                     }
                 }
 
             }
-            return foundSequence;
+            return result;
         }
 
-        private bool checkForSequenceInRow(int i_RowChosen, eBoardSigns i_MarkedSign)
+        private eBoardSigns checkForSequenceInRow(int i_RowChosen)
         {
-            bool result = true;
-            for (int i = 0; i < m_GameBoard.MatrixSideSize; i++)
+            eBoardSigns result = m_GameBoard.GetBoard()[i_RowChosen, 0];
+            for (int i = 1; i < m_GameBoard.MatrixSideSize; i++)
             {
-                if (m_GameBoard.GetBoard()[i_RowChosen, i] != i_MarkedSign)
+                if (!m_GameBoard.GetBoard()[i_RowChosen, i].Equals(result))
                 {
-                    result = false;
+                    result = eBoardSigns.Blank;
                     break;
                 }
             }
@@ -76,14 +84,14 @@ namespace Logic
             return result;
         }
 
-        private bool checkForSequenceInColumn(int i_ColumnChosen, eBoardSigns i_MarkedSign)
+        private eBoardSigns checkForSequenceInColumn(int i_ColumnChosen)
         {
-            bool result = true;
-            for (int i = 0; i < m_GameBoard.MatrixSideSize; i++)
+            eBoardSigns result= m_GameBoard.GetBoard()[0, i_ColumnChosen];
+            for (int i = 1; i < m_GameBoard.MatrixSideSize; i++)
             {
-                if (m_GameBoard.GetBoard()[i, i_ColumnChosen] != i_MarkedSign)
+                if (!m_GameBoard.GetBoard()[i, i_ColumnChosen].Equals(result))
                 {
-                    result = false;
+                    result = eBoardSigns.Blank;
                     break;
                 }
             }
@@ -92,12 +100,14 @@ namespace Logic
         }
 
 
-        public PlayerTurnInfo GenerateComputerMove(eBoardSigns i_ComputerSign, PlayerTurnInfo i_PrevTurnInfo)
+        public PlayerTurnInfo AI_GenerateSymmetricalMove(PlayerTurnInfo i_PrevTurnInfo)
         {
+            // In the medium level, the ai chooses vertical symmetrical moves to the player's.
             int matrixSideSize = m_GameBoard.MatrixSideSize;
             PlayerTurnInfo aiMove = new PlayerTurnInfo(matrixSideSize - 1, matrixSideSize - 1);
             if (matrixSideSize % 2 != 0 && i_PrevTurnInfo.CellColumn == (matrixSideSize / 2))
             {
+                // If the board's side is odd, we need to consider horizontal symmetrical moves in the middle column.
                 aiMove.CellColumn = i_PrevTurnInfo.CellColumn;
                 aiMove.CellRow -= i_PrevTurnInfo.CellRow;
             }
@@ -106,21 +116,115 @@ namespace Logic
                 aiMove.CellColumn -= i_PrevTurnInfo.CellColumn;
                 aiMove.CellRow = i_PrevTurnInfo.CellRow;
             }
-            if (m_GameBoard.GetSignOfCell(aiMove.CellColumn, aiMove.CellRow).Equals(eBoardSigns.Blank))
+            if (m_GameBoard.GetBoard()[aiMove.CellColumn, aiMove.CellRow].Equals(eBoardSigns.Blank))
             {
-                m_GameBoard.MarkCell(i_ComputerSign, aiMove.CellColumn, aiMove.CellRow);
+                m_GameBoard.MarkCell(eBoardSigns.O, aiMove.CellColumn, aiMove.CellRow);
             }
             else
             {
-                while (!m_GameBoard.GetSignOfCell(aiMove.CellColumn, aiMove.CellRow).Equals(eBoardSigns.Blank))
+                // If the ai cant find a symmetrical move -> it uses random.
+                while (!m_GameBoard.GetBoard()[aiMove.CellColumn, aiMove.CellRow].Equals(eBoardSigns.Blank))
                 {
                     aiMove.CellColumn = m_RandomGenerator.Next(m_GameBoard.MatrixSideSize);
                     aiMove.CellRow = m_RandomGenerator.Next(m_GameBoard.MatrixSideSize);
                 }
-                m_GameBoard.MarkCell(i_ComputerSign, aiMove.CellColumn, aiMove.CellRow);
+                m_GameBoard.MarkCell(eBoardSigns.O, aiMove.CellColumn, aiMove.CellRow);
             }
 
             return aiMove;
+        }
+
+        public PlayerTurnInfo AI_GenerateMinMaxAIMove()
+        {
+            // In the hard level, the ai chooses the best possible move considering all possible moves from all turns ahead.
+            // Using a recursion, this method explores all possible paths and returns values representing the end of each;
+            // A +1 is a win for the ai, -1 is a lose, and a 0 is a tie.
+            // Each turn the ai will choose the path that will have more chance to to end with a win (= +1);
+            PlayerTurnInfo bestMove = new PlayerTurnInfo();
+            int matrixSideSize = m_GameBoard.MatrixSideSize;
+            int score = 0;
+            int bestScore = -1000;
+
+            for (int i = 0; i < matrixSideSize; i++)
+            {
+                for (int j = 0; j < matrixSideSize; j++)
+                {
+                    if (m_GameBoard.GetSignOfCell(j, i).Equals(eBoardSigns.Blank))
+                    {
+                        // Mark cell, call recursion, and clear cell to former state while remembering the score given from choosing that cell.
+                        m_GameBoard.MarkCell(eBoardSigns.O, j, i);
+                        score = ai_generateMinMaxAIMoveRec(new PlayerTurnInfo(j, i), 0, false);
+                        m_GameBoard.ClearCell(j, i);
+                        if (score > bestScore)
+                        {
+                            bestScore = score;
+                            bestMove.CellRow = i;
+                            bestMove.CellColumn = j;
+                        }
+                    }
+                }
+            }
+            return bestMove;
+        }
+
+        private int ai_generateMinMaxAIMoveRec(PlayerTurnInfo i_PrevTurnInfo, int i_Depth, bool i_IsMaximizing)
+        {
+            // End condition- return +1 if ai wins, -1 if ai loses or 0 in ties.
+            eBoardSigns res = CheckForLoser(i_PrevTurnInfo.CellColumn, i_PrevTurnInfo.CellRow);
+            int score = 0;
+            int bestScore;
+
+            if (!res.Equals(eBoardSigns.Blank))
+            {
+                if (res.Equals(eBoardSigns.X))
+                    score = 1;
+                else //res.Equals(eBoardSigns.O)
+                    score = -1;
+                return score;
+            }
+            if (CheckIfBoardFilled())
+                return 0;
+
+            int matrixSideSize = m_GameBoard.MatrixSideSize;
+            if (i_IsMaximizing)
+            {
+                // Here we want to maximize ai's score
+                bestScore = -1000;
+                for (int i = 0; i < matrixSideSize; i++)
+                {
+                    for (int j = 0; j < matrixSideSize; j++)
+                    {
+                        if (m_GameBoard.GetBoard()[i, j].Equals(eBoardSigns.Blank))
+                        {
+                            m_GameBoard.MarkCell(eBoardSigns.O, j, i);
+                            score = ai_generateMinMaxAIMoveRec(new PlayerTurnInfo(j, i), i_Depth + 1, false);
+                            m_GameBoard.ClearCell(j, i);
+                            bestScore = Math.Max(score, bestScore);
+                        }
+                    }
+                }
+            }
+
+            else //isMinimizing
+            {
+                bestScore = 1000;
+                for (int i = 0; i < matrixSideSize; i++)
+                {
+                    for (int j = 0; j < matrixSideSize; j++)
+                    {
+                        if (m_GameBoard.GetBoard()[i, j].Equals(eBoardSigns.Blank))
+                        {
+                            // Here we want to minimize player's score
+                            m_GameBoard.MarkCell(eBoardSigns.X, j, i);
+                            score = ai_generateMinMaxAIMoveRec(new PlayerTurnInfo(j, i), i_Depth + 1, true);
+                            m_GameBoard.ClearCell(j, i);
+                            bestScore = Math.Min(score, bestScore);
+                        }
+                    }
+                }
+            }
+
+            return bestScore;
         }
 
         public bool CheckIfBoardFilled()

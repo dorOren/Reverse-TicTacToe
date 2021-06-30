@@ -10,6 +10,7 @@ namespace UI
     {
         public static void Main()
         {
+            Application.EnableVisualStyles();
             GameManager game = new GameManager();
             game.Start();
         }

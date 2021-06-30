@@ -1,27 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj": {}
+    "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\Logic\\Logic.csproj": {
+    "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\Logic\\Logic.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\Logic\\Logic.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\Logic\\Logic.csproj",
         "projectName": "Logic",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\Logic\\Logic.csproj"
+        "projectPath": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\Logic\\Logic.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj": {
+    "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\UI.csproj",
+        "projectPath": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\UI.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\UI\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,8 +38,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\Logic\\Logic.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\TicTacToeGUI\\Logic\\Logic.csproj"
+              "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\Logic\\Logic.csproj": {
+                "projectPath": "C:\\Users\\USER\\Source\\Repos\\dorOren\\Reverse-TicTacToe\\Logic\\Logic.csproj"
               }
             }
           }

@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace UI
 {
     partial class GameSettingsForm
@@ -28,8 +30,10 @@ namespace UI
             this.rowsLabel = new System.Windows.Forms.Label();
             this.colsLabel = new System.Windows.Forms.Label();
             this.numRows = new System.Windows.Forms.NumericUpDown();
-            this.numCols = new System.Windows.Forms.NumericUpDown();
             this.startButton = new System.Windows.Forms.Button();
+            this.numCols = new System.Windows.Forms.NumericUpDown();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numRows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCols)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +52,7 @@ namespace UI
             // 
             this.player1Label.AutoSize = true;
             this.player1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.player1Label.Location = new System.Drawing.Point(66, 48);
+            this.player1Label.Location = new System.Drawing.Point(66, 46);
             this.player1Label.Name = "player1Label";
             this.player1Label.Size = new System.Drawing.Size(57, 15);
             this.player1Label.TabIndex = 1;
@@ -56,7 +60,8 @@ namespace UI
             // 
             // textBoxPlayer1Name
             // 
-            this.textBoxPlayer1Name.Location = new System.Drawing.Point(129, 46);
+            this.textBoxPlayer1Name.Location = new System.Drawing.Point(129, 44);
+            this.textBoxPlayer1Name.MaxLength = 10;
             this.textBoxPlayer1Name.Name = "textBoxPlayer1Name";
             this.textBoxPlayer1Name.Size = new System.Drawing.Size(88, 23);
             this.textBoxPlayer1Name.TabIndex = 2;
@@ -65,7 +70,7 @@ namespace UI
             // player2CheckBox
             // 
             this.player2CheckBox.AutoSize = true;
-            this.player2CheckBox.Location = new System.Drawing.Point(45, 79);
+            this.player2CheckBox.Location = new System.Drawing.Point(45, 72);
             this.player2CheckBox.Name = "player2CheckBox";
             this.player2CheckBox.Size = new System.Drawing.Size(15, 14);
             this.player2CheckBox.TabIndex = 3;
@@ -76,7 +81,7 @@ namespace UI
             // 
             this.player2Label.AutoSize = true;
             this.player2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.player2Label.Location = new System.Drawing.Point(66, 75);
+            this.player2Label.Location = new System.Drawing.Point(66, 70);
             this.player2Label.Name = "player2Label";
             this.player2Label.Size = new System.Drawing.Size(57, 15);
             this.player2Label.TabIndex = 4;
@@ -85,7 +90,8 @@ namespace UI
             // textBoxPlayer2Name
             // 
             this.textBoxPlayer2Name.Enabled = false;
-            this.textBoxPlayer2Name.Location = new System.Drawing.Point(129, 75);
+            this.textBoxPlayer2Name.Location = new System.Drawing.Point(129, 70);
+            this.textBoxPlayer2Name.MaxLength = 10;
             this.textBoxPlayer2Name.Name = "textBoxPlayer2Name";
             this.textBoxPlayer2Name.Size = new System.Drawing.Size(88, 23);
             this.textBoxPlayer2Name.TabIndex = 5;
@@ -96,7 +102,7 @@ namespace UI
             // 
             this.boardSizeLabel.AutoSize = true;
             this.boardSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boardSizeLabel.Location = new System.Drawing.Point(26, 129);
+            this.boardSizeLabel.Location = new System.Drawing.Point(29, 153);
             this.boardSizeLabel.Name = "boardSizeLabel";
             this.boardSizeLabel.Size = new System.Drawing.Size(70, 15);
             this.boardSizeLabel.TabIndex = 6;
@@ -107,7 +113,7 @@ namespace UI
             // 
             this.rowsLabel.AutoSize = true;
             this.rowsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rowsLabel.Location = new System.Drawing.Point(42, 170);
+            this.rowsLabel.Location = new System.Drawing.Point(42, 180);
             this.rowsLabel.Name = "rowsLabel";
             this.rowsLabel.Size = new System.Drawing.Size(41, 15);
             this.rowsLabel.TabIndex = 7;
@@ -118,7 +124,7 @@ namespace UI
             // 
             this.colsLabel.AutoSize = true;
             this.colsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.colsLabel.Location = new System.Drawing.Point(162, 169);
+            this.colsLabel.Location = new System.Drawing.Point(159, 180);
             this.colsLabel.Name = "colsLabel";
             this.colsLabel.Size = new System.Drawing.Size(37, 15);
             this.colsLabel.TabIndex = 8;
@@ -126,25 +132,26 @@ namespace UI
             // 
             // numRows
             // 
-            this.numRows.Location = new System.Drawing.Point(89, 169);
-            this.numRows.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
-            this.numRows.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
+            this.numRows.Location = new System.Drawing.Point(89, 180);
+            this.numRows.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRows.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.numRows.Name = "numRows";
             this.numRows.Size = new System.Drawing.Size(37, 23);
             this.numRows.TabIndex = 9;
-            this.numRows.Value = new decimal(new int[] { 3, 0, 0, 0 });
+            this.numRows.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.numRows.ValueChanged += new System.EventHandler(this.numRows_ValueChanged);
-            // 
-            // numCols
-            // 
-            this.numCols.Location = new System.Drawing.Point(205, 169);
-            this.numCols.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
-            this.numCols.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
-            this.numCols.Name = "numCols";
-            this.numCols.Size = new System.Drawing.Size(37, 23);
-            this.numCols.TabIndex = 9;
-            this.numCols.Value = new decimal(new int[] { 3, 0, 0, 0 });
-            this.numCols.ValueChanged += new System.EventHandler(this.numCols_ValueChanged);
             // 
             // startButton
             // 
@@ -156,12 +163,60 @@ namespace UI
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.buttonStart_Click);
             // 
+            // numCols
+            // 
+            this.numCols.Location = new System.Drawing.Point(212, 180);
+            this.numCols.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numCols.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numCols.Name = "numCols";
+            this.numCols.Size = new System.Drawing.Size(37, 23);
+            this.numCols.TabIndex = 9;
+            this.numCols.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numCols.ValueChanged += new System.EventHandler(this.numCols_ValueChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(129, 99);
+            this.radioButton1.Name = "Medium Level";
+            this.radioButton1.Size = new System.Drawing.Size(94, 19);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Medium Level";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Checked = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(129, 125);
+            this.radioButton2.Name = "Hard Level";
+            this.radioButton2.Size = new System.Drawing.Size(94, 19);
+            this.radioButton2.TabIndex = 14;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Hard Level";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // GameSettingsForm
             // 
             this.AcceptButton = this.startButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 296);
+            this.ClientSize = new System.Drawing.Size(282, 257);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.numCols);
             this.Controls.Add(this.numRows);
@@ -175,16 +230,17 @@ namespace UI
             this.Controls.Add(this.player1Label);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(298, 296);
             this.MaximumSize = new System.Drawing.Size(298, 296);
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.MinimumSize = new System.Drawing.Size(298, 296);
             this.Name = "GameSettingsForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Game Settings";
             this.Load += new System.EventHandler(this.GameSettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCols)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -198,7 +254,9 @@ namespace UI
         private System.Windows.Forms.Label rowsLabel;
         private System.Windows.Forms.Label colsLabel;
         private System.Windows.Forms.NumericUpDown numRows;
-        private System.Windows.Forms.NumericUpDown numCols;
         private System.Windows.Forms.Button startButton;
+        private NumericUpDown numCols;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
     }
 }
