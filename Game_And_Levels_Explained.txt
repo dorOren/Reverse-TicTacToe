@@ -1,17 +1,17 @@
 #### GAME RULES ####
 =====================
-Reverse Tic-tac-toe is a board game, where two players alternate taking turns on an mªm board until one of them gets m in a row, column or diagonal.
+Reverse Tic-tac-toe is a board game, where two players alternate taking turns on an mÂªm board until one of them gets m in a row, column or diagonal.
 In Reverse Tic-tac-toe the losing player is the one to get a row.
 
-#### AI VARIANTS ####
+#### Levels ####
 =====================
-# Symmetrical ai (Medium Level) #
+# Symmetrical (Medium Level) #
 In the medium level, the ai chooses vertical symmetrical moves to the player's.
 If the board's side is odd, it need to consider horizontal symmetrical moves in the middle column.
 While the board's side is even, the player cant force a win against the ai, Hoever if the board is odd, the player can use the middle cell to deny
 ai's use of a symmetrical move.
 
-# MinMax ai (Hard Level) #
+# MinMax (Hard Level) #
 In the hard level, the ai chooses the best possible move considering all possible moves from all turns ahead.
 Using a recursion, this method explores all possible paths and returns values representing the end of each; A +1 is a win for the ai, -1 is a lose, and a 0 is a tie.
 Each turn the ai will choose the path that will have more chance to to end with a win (= +1), promising maximized efficiency.
